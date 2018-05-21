@@ -1,5 +1,7 @@
 package com.spbstu.lab2;
 
+// TODO poor naming convention,
+// TODO enums should be like MY_ENUM
 public enum enums {
     Site("https://jdi-framework.github.io/tests/index.htm"),
     Title("Index Page"),

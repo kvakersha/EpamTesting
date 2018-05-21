@@ -15,7 +15,9 @@ public class TestLab2 {
 
     @Before
     public void before() {
+        // TODO this should be specified in pom.xml
         String Site = "https://jdi-framework.github.io/tests/index.htm";
+        // TODO same situation
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
         this.driver = new ChromeDriver();
         this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

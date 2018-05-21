@@ -53,6 +53,7 @@ public class HomePage {
         return LogOutIn.isDisplayed();
     }
 
+    // TODO wrong method naming !
     public String UsernameIn() {
         return ProfileIcon.getText();
     }
@@ -66,6 +67,7 @@ public class HomePage {
         return TextsIn.get(i).getText();
     }
 
+    // TODO methods with "is" prefix should return boolean values...
     public String isMainTitle() {
         return MainTitleIn.getText();
     }

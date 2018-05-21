@@ -3,6 +3,7 @@ package com.spbstu.lab2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+// TODO what is the strange class name ?
 public class ForTest {
 
     public static HomePage homePage;
