@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestLab2 {
@@ -31,46 +29,23 @@ public class TestLab2 {
         ForTest.homePage.driver.close();
     }
 
-
     @Test
     public void Lab2() {
-        String Site = "https://jdi-framework.github.io/tests/index.htm";
-        String Title = "Index Page";
-        String test = "Index";
         ForTest.homePage.Url();
-        Assert.assertEquals(ForTest.homePage.Url(), Site);
-        Assert.assertEquals(ForTest.homePage.Title(), Title);
+        Assert.assertEquals(ForTest.homePage.Url(), enums.Site.value);
+        Assert.assertEquals(ForTest.homePage.Title(), enums.Title.value);
+        Assert.assertTrue(ForTest.homePage.isLoggedIn(enums.Login.value, enums.Password.value));
 
-        String Login = "epam";
-        String Password = "1234";
-        Assert.assertTrue(ForTest.homePage.isLoggedIn(Login, Password));
+        Assert.assertEquals(ForTest.homePage.UsernameIn(), enums.UserName.value);
+        Assert.assertEquals(ForTest.homePage.Title(), enums.Title.value);
 
-        String UserName = "PITER CHAILOVSKII";
-        Assert.assertEquals(ForTest.homePage.UsernameIn(), UserName);
-        Assert.assertEquals(ForTest.homePage.Title(), Title);
+        Assert.assertEquals(ForTest.homePage.iconsNumber(), enums.actualIconsNumber.val);
 
-        Integer actualIconsNumber = 4;
-        Assert.assertEquals(ForTest.homePage.iconsNumber(), actualIconsNumber);
-
-        List<String> Texts = new ArrayList<String>();
-        Texts.add("To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM projec");
-        Texts.add("To be flexible and\n" +
-                "customizable");
-        Texts.add("To be multiplatform");
-        Texts.add("Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…");
-        for (int i = 0; i < Texts.size(); i++) {
-            Assert.assertEquals(ForTest.homePage.pictureText(i), Texts.get(i));
+        for (int i = 0; i < enums.actualIconsNumber.val; i++) {
+            Assert.assertEquals(ForTest.homePage.pictureText(i), enums.texts.text[i]);
         }
 
-        String MainHeader = "EPAM FRAMEWORK WISHES…";
-        String HomePage = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
-
-        Assert.assertEquals(ForTest.homePage.isMainTitle(), MainHeader);
-        Assert.assertEquals(ForTest.homePage.isMainText(), HomePage);
+        Assert.assertEquals(ForTest.homePage.isMainTitle(), enums.MainHeader.value);
+        Assert.assertEquals(ForTest.homePage.isMainText(), enums.HomePage.value);
     }
 }
