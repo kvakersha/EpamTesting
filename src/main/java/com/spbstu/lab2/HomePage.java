@@ -33,15 +33,19 @@ public class HomePage {
         this.driver = driver;
     }
 
+    public void open() {
+        driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
+    }
+
     public void open(String Site) {
         driver.navigate().to(Site);
     }
 
-    public String Url() {
+    public String getUrl() {
         return driver.getCurrentUrl();
     }
 
-    public String Title() {
+    public String getTitle() {
         return driver.getTitle();
     }
 
@@ -52,25 +56,28 @@ public class HomePage {
         EnterIn.click();
         return LogOutIn.isDisplayed();
     }
-
-    public String UsernameIn() {
+    // TODO wrong method naming !
+    //changed
+    public String getUsername() {
         return ProfileIcon.getText();
     }
 
-    public int iconsNumber() {
+    public int getIconsNumber() {
         //System.out.println(IconsIn.size());
         return IconsIn.size();
     }
 
-    public String pictureText(int i) {
+    public String getPictureText(int i) {
         return TextsIn.get(i).getText();
     }
 
-    public String isMainTitle() {
+    // TODO methods with "is" prefix should return boolean values...
+    //changed
+    public String getMainTitle() {
         return MainTitleIn.getText();
     }
 
-    public String isMainText() {
+    public String getMainText() {
         return MainTextIn.getText();
     }
 }
