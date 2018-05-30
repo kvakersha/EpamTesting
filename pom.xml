@@ -13,12 +13,18 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <driver.path>C:\Selenium\chromedriver.exe</driver.path>
+        <webdriver.chrome.driver>C:\Selenium\chromedriver.exe</webdriver.chrome.driver>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <homepage.url>https://jdi-framework.github.io/tests/index.htm</homepage.url>
     </properties>
 
     <build>
+        <testResources>
+            <testResource>
+                <filtering>true</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -34,11 +40,15 @@
                 <configuration>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>C:\Selenium\chromedriver.exe</webdriver.chrome.driver>
+                        <homepage.url>https://jdi-framework.github.io/tests/index.htm</homepage.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+
+
 
     <dependencies>
 
@@ -62,31 +72,35 @@
         </dependency>
 
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.10</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner</artifactId>
             <version>1.0.6</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.0.0</version>
-        </dependency>
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>4.11.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.10</version>
+        </dependency>
     </dependencies>
 </project>
+
+
