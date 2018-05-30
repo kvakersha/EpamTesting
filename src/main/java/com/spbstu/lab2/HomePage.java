@@ -34,6 +34,8 @@ public class HomePage {
     }
 
     public void open() {
+        // TODO I told you that this should be specified in pom.xml
+        // TODO take a look on classwork and profiles !
         driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
     }
 

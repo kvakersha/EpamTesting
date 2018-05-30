@@ -1,5 +1,6 @@
 package com.spbstu.lab2;
 
+// TODO you should not mix testng and junit
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

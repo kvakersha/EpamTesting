@@ -5,6 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 
 // TODO what is the strange class name ?
 //Changed
+// TODO the name should be related to Application, basically
 
 public class PageObject {
 
