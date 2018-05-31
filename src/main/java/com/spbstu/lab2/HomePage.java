@@ -1,11 +1,13 @@
 package com.spbstu.lab2;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static com.sun.xml.internal.bind.v2.ClassFactory.create;
+
+//import static com.sun.xml.internal.bind.v2.ClassFactory.create;
 
 public class HomePage {
 
@@ -34,13 +36,8 @@ public class HomePage {
     }
 
     public void open() {
-        // TODO I told you that this should be specified in pom.xml
-        // TODO take a look on classwork and profiles !
-        driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
-    }
-
-    public void open(String Site) {
-        driver.navigate().to(Site);
+       // System.out.printf(create(TestConfig.class).homepage());
+        driver.navigate().to(create(TestConfig.class).homepage());
     }
 
     public String getUrl() {
