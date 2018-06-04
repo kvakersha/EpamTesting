@@ -50,9 +50,9 @@ public class TestLab3 {
 
     @Test
     public void Lab3_2() {
-        homePageSelenide.open(cfg);
-        homePageSelenide.isLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
-        homePageSelenide.isUserNameOK(PAGE_DATA.USER_NAME.str);
+        //homePageSelenide.open(cfg);
+        //homePageSelenide.isLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
+        //homePageSelenide.isUserNameOK(PAGE_DATA.USER_NAME.str);
 
         homePageSelenide.ServiceHeader.click();
         differentElementsPages.DatesPageButton.click();
