@@ -9,6 +9,10 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
 
+// TODO code convention !
+// TODO 1 Fields name should be named in camelCase style...
+// TODO 2 lots of issues, reformat your code
+
 public class DifferentElementsPages {
 
     @FindBy(css = ".dropdown-menu | [href=\"page8.htm\"]")

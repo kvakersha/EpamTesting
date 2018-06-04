@@ -26,7 +26,9 @@ public class TestLab3 {
     @Test
     public void Lab3_1() {
 
+        // TODO take a look on IDEA warning !
         homePageSelenide.open(cfg);
+        // TODO in according to code convention, methods with prefix 'is' should return boolean value
         homePageSelenide.isLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
         homePageSelenide.isUserNameOK(PAGE_DATA.USER_NAME.str);
         homePageSelenide.areIconsAndTextsExists();
@@ -34,9 +36,11 @@ public class TestLab3 {
         homePageSelenide.isMainTextOK(PAGE_DATA.HOME_PAGE.str);
         homePageSelenide.areSreviceButtonsOK(PAGE_DATA.SERVICE.strAr);
 
+        // TODO
         differentElementsPages.DifferentElementsPageButton.click();
         differentElementsPages.areDiffBoxexExists();
 
+        // TODO enums ?
         differentElementsPages.selectBoxElements("Wind");
         differentElementsPages.selectBoxElements("Water");
         differentElementsPages.selectBoxElements("Selen");
