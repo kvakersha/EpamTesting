@@ -1,10 +1,10 @@
 package com.spbstu.lab3;
 
-import com.codeborne.selenide.Condition;
 import com.spbstu.lab3.enums.DIFF_ELEMENTS_DATA;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.spbstu.lab3.TestWebsiteSelenide.differentElementsPages;
 import static com.spbstu.lab3.TestWebsiteSelenide.homePageSelenide;
 import static org.aeonbits.owner.ConfigFactory.create;
@@ -65,26 +65,6 @@ public class TestLab3 {
         differentElementsPages.slideToPositions(100, 100);
         //sleep(1000);
         differentElementsPages.slideToPositions(30, 70);
-
-        //case (20, 100) -> (0, 100)
-        /*
-        actions().dragAndDropBy(differentElementsPages.Sliders.get(0) , -(length*21/100), 0).perform();
-        differentElementsPages.Sliders.get(0).shouldHave(Condition.text(String.valueOf(0)));
-        differentElementsPages.Sliders.get(1).shouldHave(Condition.text(String.valueOf(100)));
-        //case (0, 100) -> (0, 0)
-        actions().dragAndDropBy(differentElementsPages.Sliders.get(1) , -(length*101/100), 0).perform();
-        differentElementsPages.Sliders.get(0).shouldHave(Condition.text(String.valueOf(0)));
-        differentElementsPages.Sliders.get(1).shouldHave(Condition.text(String.valueOf(0)));
-        //case (0, 0) -> (100, 100)
-        actions().dragAndDropBy(differentElementsPages.Sliders.get(0) , (length*(1+100)/100), 0).perform();
-        System.out.println(Integer.parseInt(differentElementsPages.Sliders.get(0).getText()));
-        actions().dragAndDropBy(differentElementsPages.Sliders.get(1) , (1), 0).perform();
-        System.out.println(Integer.parseInt(differentElementsPages.Sliders.get(1).getText()));
-        differentElementsPages.Sliders.get(0).shouldHave(Condition.text(String.valueOf(100)));
-        differentElementsPages.Sliders.get(1).shouldHave(Condition.text(String.valueOf(100)));
-        */
-        //System.out.println(Integer.parseInt(differentElementsPages.Sliders.get(1).getText()));
-        //actions().dragAndDropBy(differentElementsPages.Sliders.get(1) , -(length*99/100), 0).perform();
-        //System.out.println(Integer.parseInt(differentElementsPages.Sliders.get(1).getText()));
+            sleep(3000);
     }
 }

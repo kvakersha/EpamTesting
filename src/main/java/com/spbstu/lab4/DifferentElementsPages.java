@@ -1,13 +1,13 @@
-package com.spbstu.lab3;
+package com.spbstu.lab4;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Selenide.actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.actions;
 
 public class DifferentElementsPages {
 
@@ -95,14 +95,6 @@ public class DifferentElementsPages {
         Integer leftBegin = Integer.parseInt(Sliders.get(0).getText());
         Integer rightBegin = Integer.parseInt(Sliders.get(1).getText());
 
-        if (left <= leftBegin) {
-            actions().dragAndDropBy(Sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
-            System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
-        } else {
-            actions().dragAndDropBy(Sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
-            System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
-        }
-        if(Integer.parseInt(Sliders.get(0).getText())==leftBegin){
             if (left <= leftBegin) {
                 actions().dragAndDropBy(Sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
                 System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
@@ -110,22 +102,30 @@ public class DifferentElementsPages {
                 actions().dragAndDropBy(Sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
                 System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
             }
-        }
-        else {
-            if (right < rightBegin) {
-                actions().dragAndDropBy(Sliders.get(1), -(length * ((rightBegin - right) + 1) / 100), 0).perform();
-                System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
-            } else {
-                actions().dragAndDropBy(Sliders.get(1), (length * ((-rightBegin + right) + 1) / 100), 0).perform();
-                System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+            if(Integer.parseInt(Sliders.get(0).getText())==leftBegin){
+                if (left <= leftBegin) {
+                    actions().dragAndDropBy(Sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
+                    System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+                } else {
+                    actions().dragAndDropBy(Sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
+                    System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+                }
             }
-        }
+            else {
+                if (right < rightBegin) {
+                    actions().dragAndDropBy(Sliders.get(1), -(length * ((rightBegin - right) + 1) / 100), 0).perform();
+                    System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+                } else {
+                    actions().dragAndDropBy(Sliders.get(1), (length * ((-rightBegin + right) + 1) / 100), 0).perform();
+                    System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+                }
+            }
 
-        System.out.println("");
-        System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
-        System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+            System.out.println("");
+            System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+            System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
 
-        Sliders.get(0).shouldHave(Condition.text(String.valueOf(left)));
-        Sliders.get(1).shouldHave(Condition.text(String.valueOf(right)));
+            Sliders.get(0).shouldHave(Condition.text(String.valueOf(left)));
+            Sliders.get(1).shouldHave(Condition.text(String.valueOf(right)));
     }
 }
