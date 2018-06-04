@@ -5,8 +5,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static com.sun.xml.internal.bind.v2.ClassFactory.create;
-
 //import static com.sun.xml.internal.bind.v2.ClassFactory.create;
 
 public class HomePage {
@@ -35,9 +33,9 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void open() {
+    public void open(TestConfig cfg) {
        // System.out.printf(create(TestConfig.class).homepage());
-        driver.navigate().to(create(TestConfig.class).homepage());
+        driver.navigate().to(cfg.homepage());
     }
 
     public String getUrl() {

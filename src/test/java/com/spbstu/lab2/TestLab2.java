@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 import static org.aeonbits.owner.ConfigFactory.create;
 
-
 public class TestLab2 {
 
     private WebDriver driver;
@@ -33,7 +32,8 @@ public class TestLab2 {
 
     @Test
     public void Lab2() {
-        driver.navigate().to(cfg.homepage());
+        //driver.navigate().to(cfg.homepage());
+        TestWebsite.homePage.open(cfg);
         TestWebsite.homePage.getUrl();
         Assert.assertEquals(TestWebsite.homePage.getUrl(), PAGE_DATA.SITE.str);
         Assert.assertEquals(TestWebsite.homePage.getTitle(), PAGE_DATA.TITLE.str);
@@ -50,6 +50,6 @@ public class TestLab2 {
         }
 
         Assert.assertEquals(TestWebsite.homePage.getMainTitle(), PAGE_DATA.MAIN_HEADER.str);
-        Assert.assertEquals(TestWebsite.homePage.getMainText(), PAGE_DATA.HOME_PAGE.str);
+        Assert.assertEquals(TestWebsite.homePage.getMainText(), PAGE_DATA.HOME_PAGE.str); 
     }
 }
