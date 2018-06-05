@@ -43,6 +43,9 @@ public class DifferentElementsPages {
 
     @FindBy(css = ".ui-slider-handle")
     ElementsCollection sliders;
+    
+    @FindBy(css = ".ui-slider-horizontal")
+    SelenideElement sliderLength;
 
 
     public DifferentElementsPages() {
@@ -100,7 +103,7 @@ public class DifferentElementsPages {
     }
 
     public void checkSlidePositions(int left, int right) {
-        Integer length = 274;
+        Integer length = sliderLength.getSize().width;
         Integer leftBegin = Integer.parseInt(sliders.get(0).getText());
         Integer rightBegin = Integer.parseInt(sliders.get(1).getText());
 
