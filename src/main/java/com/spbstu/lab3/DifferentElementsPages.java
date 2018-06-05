@@ -1,131 +1,139 @@
 package com.spbstu.lab3;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Selenide.actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.actions;
 
 public class DifferentElementsPages {
 
     @FindBy(css = ".dropdown-menu | [href=\"page8.htm\"]")
-    SelenideElement DifferentElementsPageButton;
+    SelenideElement differentElementsPageButton;
 
     @FindBy(css = ".label-checkbox")
-    ElementsCollection CheckBoxes;
+    ElementsCollection checkBoxes;
 
     @FindBy(css = ".label-radio")
-    ElementsCollection Radios;
+    ElementsCollection radios;
 
     @FindBy(css = "div.colors")
-    ElementsCollection DropDownColors;
+    ElementsCollection dropDownColors;
 
     @FindBy(css = "[value=\"Default Button\"]")
-    SelenideElement DefaultButton;
+    SelenideElement defaultButton;
 
     @FindBy(css = "[value=\"Button\"]")
-    SelenideElement Button;
+    SelenideElement button;
 
     @FindBy(css = ".logs li")
     ElementsCollection Logs;
 
     @FindBy(css = "#mCSB_1")
-    SelenideElement LeftSection;
+    SelenideElement leftSection;
 
     @FindBy(css = "#mCSB_2")
-    SelenideElement RightSection;
+    SelenideElement rightSection;
 
     @FindBy(css = ".dropdown-menu | [href=\"page4.htm\"]")
-    SelenideElement DatesPageButton;
+    SelenideElement datesPageButton;
 
     @FindBy(css = ".ui-slider-handle")
-    ElementsCollection Sliders;
+    ElementsCollection sliders;
 
 
-    public DifferentElementsPages(){Selenide.page(this);}
+    public DifferentElementsPages() {
+        Selenide.page(this);
+    }
 
 
-    public void areDiffBoxexExists() {
-        for(int i=0; i<4; i++){
-            CheckBoxes.get(i).shouldBe(Condition.visible);
-            Radios.get(i).shouldBe(Condition.visible);
+    public void checkDiffBoxexExists() {
+        for (int i = 0; i < 4; i++) {
+            checkBoxes.get(i).shouldBe(Condition.visible);
+            radios.get(i).shouldBe(Condition.visible);
         }
-        DropDownColors.get(0).shouldBe(Condition.visible);
-        LeftSection.shouldBe(Condition.visible);
-        RightSection.shouldBe(Condition.visible);
-        DefaultButton.shouldBe(Condition.visible);
-        Button.shouldBe(Condition.visible);
+        dropDownColors.get(0).shouldBe(Condition.visible);
+        leftSection.shouldBe(Condition.visible);
+        rightSection.shouldBe(Condition.visible);
+        defaultButton.shouldBe(Condition.visible);
+        button.shouldBe(Condition.visible);
     }
 
     public void selectBoxElements(String str) {
         for (int i = 0; i < 4; i++) {
-            if (CheckBoxes.get(i).getText().contains(str)) {
-                CheckBoxes.get(i).click();
-            }
-            if (Radios.get(i).getText().contains(str)) {
-                Radios.get(i).click();
+            if (checkBoxes.get(i).getText().contains(str)) {
+                checkBoxes.get(i).click();
             }
         }
     }
 
-    public void selectColorElement(String str){
+    public void selectRadioElements(String str) {
+        for (int i = 0; i < 4; i++) {
+            if (radios.get(i).getText().contains(str)) {
+                radios.get(i).click();
+            }
+        }
+    }
+
+    public void selectColorElement(String str) {
         $(".colors .uui-form-element").selectOption(str);
     }
 
-    public void checkSelectedElements(String[] strAr){
-        for(int i=0; i<6; i++){
-            Logs.get(6-i-1).shouldHave(Condition.text(strAr[i]));
+    public void checkSelectedElements(String[] strAr) {
+        for (int i = 0; i < 6; i++) {
+            Logs.get(i).shouldHave(Condition.text(strAr[i]));
+            //Logs.get(6 - i - 1).shouldHave(Condition.text(strAr[i]));
         }
     }
 
-    public void checkUnselectedElements(String[] strAr){
-        for (int i = 0; i < Logs.size();i++)
+    public void checkUnselectedElements(String[] strAr) {
+        for (int i = 0; i < Logs.size(); i++)
             System.out.println(Logs.get(i).getText());
 
-        for(int i=4; i<6; i++){
-            Logs.get(i).shouldHave(Condition.text(strAr[6-5-i]));
+        for (int i = 4; i < 6; i++) {
+            //Logs.get(i).shouldHave(Condition.text(strAr[6 - 5 - i]));
+            Logs.get(i).shouldHave(Condition.text(strAr[i]));
         }
     }
 
-    public void slideToPositions(int left, int right) {
+    public void checkSlidePositions(int left, int right) {
         Integer length = 274;
-        Integer leftBegin = Integer.parseInt(Sliders.get(0).getText());
-        Integer rightBegin = Integer.parseInt(Sliders.get(1).getText());
+        Integer leftBegin = Integer.parseInt(sliders.get(0).getText());
+        Integer rightBegin = Integer.parseInt(sliders.get(1).getText());
 
         if (left <= leftBegin) {
-            actions().dragAndDropBy(Sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
-            System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+            actions().dragAndDropBy(sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
+            System.out.println("Left: " + Integer.parseInt(sliders.get(0).getText()));
         } else {
-            actions().dragAndDropBy(Sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
-            System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+            actions().dragAndDropBy(sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
+            System.out.println("Left: " + Integer.parseInt(sliders.get(0).getText()));
         }
-        if(Integer.parseInt(Sliders.get(0).getText())==leftBegin){
+        if ((Integer.parseInt(sliders.get(0).getText()) == leftBegin) && (Integer.parseInt(sliders.get(1).getText()) == right)) {
             if (left <= leftBegin) {
-                actions().dragAndDropBy(Sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
-                System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+                actions().dragAndDropBy(sliders.get(0), -((length * ((leftBegin - left) + 1) / 100)), 0).perform();
+                System.out.println("Left: " + Integer.parseInt(sliders.get(0).getText()));
             } else {
-                actions().dragAndDropBy(Sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
-                System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
+                actions().dragAndDropBy(sliders.get(0), (length * ((leftBegin + left) - 1) / 100), 0).perform();
+                System.out.println("Left: " + Integer.parseInt(sliders.get(0).getText()));
             }
-        }
-        else {
+        } else {
             if (right < rightBegin) {
-                actions().dragAndDropBy(Sliders.get(1), -(length * ((rightBegin - right) + 1) / 100), 0).perform();
-                System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+                actions().dragAndDropBy(sliders.get(1), -(length * ((rightBegin - right) + 1) / 100), 0).perform();
+                System.out.println("Right: " + Integer.parseInt(sliders.get(1).getText()));
             } else {
-                actions().dragAndDropBy(Sliders.get(1), (length * ((-rightBegin + right) + 1) / 100), 0).perform();
-                System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+                actions().dragAndDropBy(sliders.get(1), (length * ((-rightBegin + right) + 1) / 100), 0).perform();
+                System.out.println("Right: " + Integer.parseInt(sliders.get(1).getText()));
             }
         }
 
         System.out.println("");
-        System.out.println("Left: " + Integer.parseInt(Sliders.get(0).getText()));
-        System.out.println("Right: " + Integer.parseInt(Sliders.get(1).getText()));
+        System.out.println("Left: " + Integer.parseInt(sliders.get(0).getText()));
+        System.out.println("Right: " + Integer.parseInt(sliders.get(1).getText()));
 
-        Sliders.get(0).shouldHave(Condition.text(String.valueOf(left)));
-        Sliders.get(1).shouldHave(Condition.text(String.valueOf(right)));
+        sliders.get(0).shouldHave(Condition.text(String.valueOf(left)));
+        sliders.get(1).shouldHave(Condition.text(String.valueOf(right)));
     }
 }

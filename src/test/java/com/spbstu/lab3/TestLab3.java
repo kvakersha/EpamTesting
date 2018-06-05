@@ -1,23 +1,23 @@
 package com.spbstu.lab3;
 
-import com.spbstu.lab3.enums.DIFF_ELEMENTS_DATA;
+import com.spbstu.lab3.enums.PAGE_DATA;
+import com.spbstu.lab3.utilities.TestConfig;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.spbstu.lab3.TestWebsiteSelenide.differentElementsPages;
 import static com.spbstu.lab3.TestWebsiteSelenide.homePageSelenide;
+import static com.spbstu.lab3.enums.DIFF_ELEMENTS_DATA.*;
 import static org.aeonbits.owner.ConfigFactory.create;
-import com.spbstu.lab3.enums.PAGE_DATA;
-import com.spbstu.lab3.utilities.TestConfig;
 
 public class TestLab3 {
 
-    TestConfig cfg;
+
 
     @BeforeSuite
     public void beforeSuite() {
-        cfg = create(TestConfig.class);
+        TestConfig cfg = create(TestConfig.class);
         com.codeborne.selenide.Configuration.timeout = 6000;
         com.codeborne.selenide.Configuration.browser = "chrome";
         TestWebsiteSelenide.init();
@@ -25,27 +25,24 @@ public class TestLab3 {
 
     @Test
     public void Lab3_1() {
+        homePageSelenide.open();
+        homePageSelenide.checkLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
+        homePageSelenide.checkUserName(PAGE_DATA.USER_NAME.str);
+        homePageSelenide.checkIconsAndTextsExists();
+        homePageSelenide.checkMainTitle(PAGE_DATA.MAIN_HEADER.str);
+        homePageSelenide.checkMainText(PAGE_DATA.HOME_PAGE.str);
+        homePageSelenide.checkSreviceButtons(PAGE_DATA.SERVICE.strAr);
 
-        homePageSelenide.open(cfg);
-        homePageSelenide.isLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
-        homePageSelenide.isUserNameOK(PAGE_DATA.USER_NAME.str);
-        homePageSelenide.areIconsAndTextsExists();
-        homePageSelenide.isMainTitleOK(PAGE_DATA.MAIN_HEADER.str);
-        homePageSelenide.isMainTextOK(PAGE_DATA.HOME_PAGE.str);
-        homePageSelenide.areSreviceButtonsOK(PAGE_DATA.SERVICE.strAr);
+        differentElementsPages.differentElementsPageButton.click();
+        differentElementsPages.checkDiffBoxexExists();
 
-        differentElementsPages.DifferentElementsPageButton.click();
-        differentElementsPages.areDiffBoxexExists();
-
-        differentElementsPages.selectBoxElements("Wind");
-        differentElementsPages.selectBoxElements("Water");
-        differentElementsPages.selectBoxElements("Selen");
-        differentElementsPages.selectColorElement("Yellow");
-        differentElementsPages.selectBoxElements("Water");
-        differentElementsPages.selectBoxElements("Wind");
-        differentElementsPages.checkSelectedElements(DIFF_ELEMENTS_DATA.SELECT_ELEMENTS.strAr);
-        for (int i = 0; i < differentElementsPages.Logs.size();i++)
-            System.out.println(differentElementsPages.Logs.get(i).getText());
+        differentElementsPages.selectBoxElements(CHECK_BOXES.strAr[2]);
+        differentElementsPages.selectBoxElements(CHECK_BOXES.strAr[0]);
+        differentElementsPages.selectRadioElements(RADIOS.strAr[3]);
+        differentElementsPages.selectColorElement(DROP_COLORS.strAr[3]);
+        differentElementsPages.selectBoxElements(CHECK_BOXES.strAr[0]);
+        differentElementsPages.selectBoxElements(CHECK_BOXES.strAr[2]);
+        differentElementsPages.checkSelectedElements(SELECT_ELEMENTS.strAr);
     }
 
     @Test
@@ -54,17 +51,16 @@ public class TestLab3 {
         //homePageSelenide.isLoggedIn(PAGE_DATA.LOGIN.str, PAGE_DATA.PASSWORD.str);
         //homePageSelenide.isUserNameOK(PAGE_DATA.USER_NAME.str);
 
-        homePageSelenide.ServiceHeader.click();
-        differentElementsPages.DatesPageButton.click();
+        homePageSelenide.serviceHeader.click();
+        differentElementsPages.datesPageButton.click();
 
-        Integer length = 274;
-        differentElementsPages.slideToPositions(0, 100);
-       // sleep(3000);
-        differentElementsPages.slideToPositions(0, 0);
+        differentElementsPages.checkSlidePositions(0, 100);
+        // sleep(3000);
+        differentElementsPages.checkSlidePositions(0, 0);
         //sleep(1000);
-        differentElementsPages.slideToPositions(100, 100);
+        differentElementsPages.checkSlidePositions(100, 100);
         //sleep(1000);
-        differentElementsPages.slideToPositions(30, 70);
-            sleep(3000);
+        differentElementsPages.checkSlidePositions(30, 70);
+        sleep(3000);
     }
 }
