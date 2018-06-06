@@ -5,91 +5,92 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.spbstu.lab4.utilities.TestConfig;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePageSelenide {
 
     @FindBy(css = ".profile-photo")
-    SelenideElement ProfileIcon;
+    SelenideElement profileIcon;
 
     @FindBy(css = "#Login")
-    SelenideElement LoginIn;
+    SelenideElement loginIn;
 
     @FindBy(css = "#Password")
-    SelenideElement PasswordIn;
+    SelenideElement passwordIn;
 
     @FindBy(css = "form .btn-login")
-    SelenideElement EnterIn;
+    SelenideElement enterIn;
 
     @FindBy(css = ".logout")
-    SelenideElement LogOutIn;
+    SelenideElement logOutIn;
 
     @FindBy(css = ".icons-benefit")
-    ElementsCollection IconsIn;
+    ElementsCollection iconsIn;
 
     @FindBy(css = ".benefit-txt")
-    ElementsCollection TextsIn;
+    ElementsCollection textsIn;
 
     @FindBy(css = ".main-title")
-    SelenideElement MainTitleIn;
+    SelenideElement mainTitleIn;
 
     @FindBy(css = ".main-txt")
-    SelenideElement MainTextIn;
+    SelenideElement mainTextIn;
 
     @FindBy(css = "li.sub-menu")
-    SelenideElement ServiceLeftSection;
+    SelenideElement serviceLeftSection;
 
     @FindBy(css = "li.dropdown")
-    SelenideElement ServiceHeader;
+    SelenideElement serviceHeader;
 
-    public HomePageSelenide(){
+    public HomePageSelenide() {
         Selenide.page(this);
     }
 
-    public static void open(TestConfig cfg) {
-        Selenide.open(cfg.homepage());
+    public static void open() {
+        Selenide.open(ConfigFactory.create(TestConfig.class).homepage());
     }
 
     public String getTitle() {
         return Selenide.title();
     }
 
-    public void isLoggedIn(String Login, String Password) {
-        ProfileIcon.click();
-        LoginIn.sendKeys(Login);
-        PasswordIn.sendKeys(Password);
-        EnterIn.click();
-        LogOutIn.shouldBe(Condition.visible);
+    public void checkLoggedIn(String Login, String Password) {
+        profileIcon.click();
+        loginIn.sendKeys(Login);
+        passwordIn.sendKeys(Password);
+        enterIn.click();
+        logOutIn.shouldBe(Condition.visible);
     }
 
-    public void isUserNameOK(String Username){
-        ProfileIcon.shouldBe(Condition.visible);
-        ProfileIcon.shouldHave(Condition.text(Username));
+    public void checkUserName(String Username) {
+        profileIcon.shouldBe(Condition.visible);
+        profileIcon.shouldHave(Condition.text(Username));
     }
 
-    public void areIconsAndTextsExists() {
-        for(int i=0; i<4; i++) {
-            IconsIn.get(i).shouldBe(Condition.visible);
-            TextsIn.get(i).shouldBe(Condition.visible);
+    public void checkIconsAndTextsExists() {
+        for (int i = 0; i < 4; i++) {
+            iconsIn.get(i).shouldBe(Condition.visible);
+            textsIn.get(i).shouldBe(Condition.visible);
         }
     }
 
-    public void isMainTitleOK(String mainTitle) {
-        MainTitleIn.shouldBe(Condition.visible);
-        MainTitleIn.shouldHave(Condition.text(mainTitle));
+    public void checkMainTitle(String mainTitle) {
+        mainTitleIn.shouldBe(Condition.visible);
+        mainTitleIn.shouldHave(Condition.text(mainTitle));
     }
 
-    public void isMainTextOK(String mainText) {
-        MainTextIn.shouldBe(Condition.visible);
-        MainTextIn.shouldHave(Condition.text(mainText));
+    public void checkMainText(String mainText) {
+        mainTextIn.shouldBe(Condition.visible);
+        mainTextIn.shouldHave(Condition.text(mainText));
     }
 
-    public void areSreviceButtonsOK(String[] str){
-        ServiceLeftSection.click();
-        ServiceHeader.click();
-        for(int i=0; i<6; i++){
-            ServiceLeftSection.shouldHave(Condition.text(str[i]));
-            ServiceHeader.shouldHave(Condition.text(str[i]));
+    public void checkSreviceButtons(String[] str) {
+        serviceLeftSection.click();
+        serviceHeader.click();
+        for (int i = 0; i < 6; i++) {
+            serviceLeftSection.shouldHave(Condition.text(str[i]));
+            serviceHeader.shouldHave(Condition.text(str[i]));
         }
     }
 }

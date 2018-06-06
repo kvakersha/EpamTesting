@@ -43,7 +43,7 @@ public class DifferentElementsPages {
 
     @FindBy(css = ".ui-slider-handle")
     ElementsCollection sliders;
-    
+
     @FindBy(css = ".ui-slider-horizontal")
     SelenideElement sliderLength;
 
