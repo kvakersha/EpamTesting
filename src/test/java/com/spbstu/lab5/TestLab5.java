@@ -2,7 +2,7 @@ package com.spbstu.lab5;
 
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.testng.testRunner.TestNGBase;
-import com.spbstu.lab5.entities.Data;
+import com.spbstu.lab5.entities.MetalsAndColorsDataSet;
 import com.spbstu.lab5.enums.PAGE_DATA;
 import com.spbstu.lab5.utilities.TestConfig;
 import org.testng.annotations.BeforeSuite;
@@ -37,8 +37,8 @@ public class TestLab5 extends TestNGBase {
     }
 
     @Test(dataProvider = "dataProvider")
-    public void Lab5(Data data) {
-        metalsAndColorsPageJDI.selectMetalsAndColors(data);
-        metalsAndColorsPageJDI.checkSelectedData();
+    public void Lab5(MetalsAndColorsDataSet metalsAndColorsDataSet) {
+        metalsAndColorsPageJDI.selectMetalsAndColors(metalsAndColorsDataSet);
+        metalsAndColorsPageJDI.checkSelectedMetalsAndColors(metalsAndColorsDataSet);
     }
 }

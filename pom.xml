@@ -179,7 +179,6 @@
                 <test.runner>lab5.xml</test.runner>
             </properties>
         </profile>
-
     </profiles>
 
 

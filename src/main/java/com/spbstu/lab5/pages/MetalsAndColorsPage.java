@@ -8,7 +8,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JComboBox;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.web.matcher.junit.Assert;
-import com.spbstu.lab5.entities.Data;
+import com.spbstu.lab5.entities.MetalsAndColorsDataSet;
 import com.spbstu.lab5.enums.PAGE_DATA;
 import org.openqa.selenium.support.FindBy;
 
@@ -44,10 +44,7 @@ public class MetalsAndColorsPage extends WebPage {
     @FindBy(css = "#submit-button")
     public Button submit;
 
-    //counter of data
-    Integer count = 0;
-
-    public void unSelectElementsAndVegetables(Data data) {
+    public void unSelectElementsAndVegetables(MetalsAndColorsDataSet metalsAndColorsDataSet) {
         /*for(int i=0; i<4; i++){
             if(elements.isSelected(PAGE_DATA.ELEMENTS.strAr[i])){
                     elements.select(PAGE_DATA.ELEMENTS.strAr[i]);
@@ -56,35 +53,41 @@ public class MetalsAndColorsPage extends WebPage {
                 elements.select(PAGE_DATA.VEGETABLES.strAr[i]);
             }
         }*/
-        for (int i = 0; i < data.getElements().length; i++)
-            elements.select(data.getElements()[i]);
-        for (int i = 0; i < data.getVegetables().length; i++)
-            vegetables.select(data.getVegetables()[i]);
+        for (int i = 0; i < metalsAndColorsDataSet.getElements().length; i++)
+            elements.select(metalsAndColorsDataSet.getElements()[i]);
+        for (int i = 0; i < metalsAndColorsDataSet.getVegetables().length; i++)
+            vegetables.select(metalsAndColorsDataSet.getVegetables()[i]);
     }
 
-    public void selectMetalsAndColors(Data data) {
+    public void selectMetalsAndColors(MetalsAndColorsDataSet metalsAndColorsDataSet) {
 
-        radios.select(Integer.toString(data.getSummary()[0]));
-        radios.select(Integer.toString(data.getSummary()[1]));
+        radios.select(Integer.toString(metalsAndColorsDataSet.getSummary()[0]));
+        radios.select(Integer.toString(metalsAndColorsDataSet.getSummary()[1]));
 
-        for (int i = 0; i < data.getElements().length; i++) {
-            elements.select(data.getElements()[i]);
+        for (int i = 0; i < metalsAndColorsDataSet.getElements().length; i++) {
+            elements.select(metalsAndColorsDataSet.getElements()[i]);
         }
 
-        colors.select(data.getColor());
-        metals.select(data.getMetals());
+        colors.select(metalsAndColorsDataSet.getColor());
+        metals.select(metalsAndColorsDataSet.getMetals());
 
-        for (int i = 0; i < data.getVegetables().length; i++) {
-            vegetables.select(data.getVegetables()[i]);
+        for (int i = 0; i < metalsAndColorsDataSet.getVegetables().length; i++) {
+            vegetables.select(metalsAndColorsDataSet.getVegetables()[i]);
         }
         submit.click();
-        count++;
-        unSelectElementsAndVegetables(data);
+        unSelectElementsAndVegetables(metalsAndColorsDataSet);
         //System.out.println(resultLog.getValue());
     }
 
-    public void checkSelectedData() {
+    public void checkSelectedMetalsAndColors(MetalsAndColorsDataSet metalsAndColorsDataSet) {
         //System.out.println(resultLog.getValue());
-        Assert.assertTrue(resultLog.getValue().contains(PAGE_DATA.EXPECTED_RESULT.strAr[count - 1]));
+        int sum = (metalsAndColorsDataSet.getSummary()[0]+metalsAndColorsDataSet.getSummary()[1]);
+        Assert.assertTrue(resultLog.getValue().contains(Integer.toString(sum)));
+        for(int i=0; i<metalsAndColorsDataSet.getElements().length; i++)
+            Assert.assertTrue(resultLog.getValue().contains(metalsAndColorsDataSet.getElements()[i]));
+        Assert.assertTrue(resultLog.getValue().contains(metalsAndColorsDataSet.getColor()));
+        Assert.assertTrue(resultLog.getValue().contains(metalsAndColorsDataSet.getMetals()));
+        for(int i=0; i<metalsAndColorsDataSet.getVegetables().length; i++)
+            Assert.assertTrue(resultLog.getValue().contains(metalsAndColorsDataSet.getVegetables()[i]));
     }
 }
