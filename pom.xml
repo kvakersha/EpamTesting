@@ -14,6 +14,7 @@
 
     <properties>
         <webdriver.chrome.driver>C:\Selenium\chromedriver.exe</webdriver.chrome.driver>
+        <webdriver.folder>C:\Selenium</webdriver.folder>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <homepage.url>https://jdi-framework.github.io/tests/index.htm</homepage.url>
         <listener>ru.yandex.qatools.allure.testng.AllureTestListener</listener>
@@ -85,6 +86,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-uitest-web</artifactId>
+            <version>1.1.15</version>
         </dependency>
     </dependencies>
 
@@ -165,11 +171,13 @@
             <properties>
                 <test.runner>lab4.xml</test.runner>
             </properties>
+        </profile>
 
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
+        <profile>
+            <id>lab5</id>
+            <properties>
+                <test.runner>lab5.xml</test.runner>
+            </properties>
         </profile>
 
     </profiles>
